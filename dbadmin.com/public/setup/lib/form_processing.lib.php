@@ -1,11 +1,9 @@
 <?php
+/* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Formset processing library
  *
- * @package    phpMyAdmin-setup
- * @author     Piotr Przybylski <piotrprz@gmail.com>
- * @license    http://www.gnu.org/licenses/gpl.html GNU GPL 2.0
- * @version    $Id$
+ * @package PhpMyAdmin-setup
  */
 
 /**
@@ -13,8 +11,9 @@
  *
  * @param FormDisplay $form_display
  */
-function process_formset(FormDisplay $form_display) {
-	if (filter_input(INPUT_GET, 'mode') == 'revert') {
+function process_formset(FormDisplay $form_display)
+{
+    if (filter_input(INPUT_GET, 'mode') == 'revert') {
         // revert erroneous fields to their default values
         $form_display->fixErrors();
         // drop post data
@@ -35,20 +34,20 @@ function process_formset(FormDisplay $form_display) {
             $formset = $formset ? "{$separator}formset=$formset" : '';
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
             if ($id === null && $page == 'servers') {
-            	// we've just added a new server, get it's id
-            	$id = ConfigFile::getInstance()->getServerCount();
+                // we've just added a new server, get it's id
+                $id = ConfigFile::getInstance()->getServerCount();
             }
             $id = $id ? "{$separator}id=$id" : '';
             ?>
-            <div class="warning">
-                <h4><?php echo $GLOBALS['strSetupWarning'] ?></h4>
-                <?php echo PMA_lang('error_form') ?><br />
-                <a href="?page=<?php echo $page . $formset . $id . $separator ?>mode=revert"><?php echo PMA_lang('RevertErroneousFields') ?></a>
+            <div class="error">
+                <h4><?php echo __('Warning') ?></h4>
+                <?php echo __('Submitted form contains errors') ?><br />
+                <a href="?page=<?php echo $page . $formset . $id . $separator ?>mode=revert"><?php echo __('Try to revert erroneous fields to their default values') ?></a>
             </div>
             <?php $form_display->displayErrors() ?>
-            <a class="btn" href="index.php"><?php echo PMA_lang('IgnoreErrors') ?></a>
+            <a class="btn" href="index.php"><?php echo __('Ignore errors') ?></a>
             &nbsp;
-            <a class="btn" href="?page=<?php echo $page . $formset . $id . $separator ?>mode=edit"><?php echo PMA_lang('ShowForm') ?></a>
+            <a class="btn" href="?page=<?php echo $page . $formset . $id . $separator ?>mode=edit"><?php echo __('Show form') ?></a>
             <?php
         } else {
             // drop post data

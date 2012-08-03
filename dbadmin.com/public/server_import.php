@@ -2,8 +2,7 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  *
- * @version $Id$
- * @package phpMyAdmin
+ * @package PhpMyAdmin
  */
 
 /**
@@ -11,11 +10,7 @@
  */
 require_once './libraries/common.inc.php';
 
-/**
-  * Load mootools for upload progress bar
-  */
-$GLOBALS['js_include'][] = 'mootools.js'; 
-
+$GLOBALS['js_include'][] = 'import.js';
 
 /**
  * Does the common work
