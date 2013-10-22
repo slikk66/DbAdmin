@@ -4,6 +4,13 @@
  *
  * @package PhpMyAdmin-Engines
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
+
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 /**
  *
